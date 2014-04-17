@@ -1,0 +1,47 @@
+{
+    "name": "huskycms/hcb-blog-tag",
+    "type": "huskycms-backend-plugin",
+    "description": "Managing blog post tag plugin for backend area of the HuskyCMS",
+    "authors": [
+        {
+            "name": "Mylotskyi Oleksii",
+            "email": "spalaxinco@gmail.com"
+        }
+    ],
+    "keywords": [
+        "huskycms", "plugin", "module"
+    ],
+    "license": "MIT",
+    "homepage": "http://huskycms.com/hcb-blog-tag",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://packages.milsdev.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/PHPUnit": "3.7.*"
+    },
+    "require": {
+        "php": ">=5.3.3",
+        "huskycms/hc-core": "dev-master",
+        "huskycms/hc-backend": "dev-master",
+        "huskycms/hcb-blog": "dev-master",
+        "spalax/zf2-libs": "dev-master",
+        "zendframework/zendframework": "2.3.0",
+        "doctrine/doctrine-module": "0.*",
+        "doctrine/doctrine-orm-module": "0.*",
+        "doctrine/migrations": "v1.0-ALPHA1",
+        "rwoverdijk/assetmanager": "1.3.5"
+    },
+    "autoload": {
+        "psr-0": {
+            "HcbBlogTag": "src/"
+        },
+
+        "classmap": [
+            "./Module.php"
+        ]
+    },
+    "minimum-stability": "dev"
+}
