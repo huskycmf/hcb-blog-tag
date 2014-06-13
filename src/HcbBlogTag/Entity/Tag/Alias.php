@@ -28,7 +28,7 @@ class Alias implements EntityInterface, AliasWiredInterface
      * @var \HcbBlogTag\Entity\Tag
      *
      * @ORM\Id
-     * @ORM\OneToOne(targetEntity="\HcbBlogTag\Entity\Tag")
+     * @ORM\ManyToOne(targetEntity="\HcbBlogTag\Entity\Tag", inversedBy="alias")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="post_tag_id", referencedColumnName="id")
      * })
