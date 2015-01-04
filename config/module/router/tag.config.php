@@ -10,9 +10,13 @@ return array(
             'type' => 'segment',
             'options' => array(
                 'route' => '/:id',
-                'constraints' => array( 'id' => '[0-9]+' )
+                'constraints' => array( 'id' => '[0-9]+' ),
+                'defaults' => array(
+                    'controller' =>
+                        'HcbBlogTag-Controller-View'
+                )
             ),
-            'may_terminate' => false,
+            'may_terminate' => true,
             'child_routes' => array(
                 'locale' => array(
                     'type' => 'literal',
@@ -26,7 +30,8 @@ return array(
                             'options' => array(
                                 'verb' => 'get',
                                 'defaults' => array(
-                                    'controller' => 'HcbBlogTag-Controller-Localized-Collection-List'
+                                    'controller' =>
+                                        'HcbBlogTag-Controller-Localized-Collection-List'
                                 )
                             )
                         ),

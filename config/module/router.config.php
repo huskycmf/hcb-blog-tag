@@ -3,19 +3,13 @@ return array(
     'routes' => array(
         'hc-backend' => array(
             'child_routes' => array(
-                'store' => array(
+                'blog' => array(
                     'type' => 'literal',
                     'options' => array(
-                        'route' => '/store'
+                        'route' => '/blog'
                     ),
-                    'may_terminate' => false,
                     'child_routes' => array(
-                        'product' => array(
-                            'route'=>'/product',
-                            'child_routes' => array(
-                                'category' => include __DIR__ . '/router/category.config.php'
-                            )
-                        )
+                        'tag' => include __DIR__ . '/router/tag.config.php'
                     )
                 )
             )

@@ -1,0 +1,15 @@
+<form data-dojo-attach-point="containerNode">
+    <div class="row">
+        <label>${!_t.titleLabel}</label>
+        <input class="${baseClass}Title"
+               data-dojo-type="dijit/form/ValidationTextBox"
+               data-dojo-props='name:"title", required: "true"' />
+    </div>
+
+    <input class="${baseClass}AddButton"
+           data-dojo-type="dojo-common/form/BusyButton"
+           data-dojo-attach-point="saveButtonWidget"
+           data-dojo-attach-event="onClick: save"
+           data-dojo-props='name:"send",
+                            label:"${!_t.addButton}"' />
+</form>

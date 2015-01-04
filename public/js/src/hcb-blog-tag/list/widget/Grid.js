@@ -1,7 +1,7 @@
 define([
     "dojo/_base/declare",
     "dojo/_base/lang",
-    "hcb-blog-tag/store/ProductStore",
+    "hcb-blog-tag/store/TagStore",
     "dgrid/OnDemandGrid",
     "dgrid/extensions/ColumnHider",
     "dgrid/extensions/ColumnResizer",
@@ -13,7 +13,7 @@ define([
     "dgrid/Keyboard",
     "dgrid/selector",
     "dojo/i18n!../../nls/List"
-], function(declare, lang, StaticPageStore,
+], function(declare, lang, TagStore,
             OnDemandGrid, ColumnHider, ColumnResizer, DijitRegistry,
             _Selection, _Refresher, timestamp, editor, Keyboard,
             selector, translation) {
@@ -24,14 +24,16 @@ define([
         //  summary:
         //      Grid widget for displaying all available clients
         //      as list
-        store: StaticPageStore,
+        store: TagStore,
 
         columns: [
             selector({ label: "", width: 40, selectorType: "checkbox" }),
-            {label: translation['labelId'], hidden: true, field: 'id', sortable: true, resizable: false},
-            editor({label: translation['labelUrl'], field: 'url', hidden: false,
-                    sortable: true, resizable: true, route: '/update/:id'}),
-            timestamp({label: translation['labelCreatedTimestamp'], field: 'createdTimestamp', sortable: true})
+            {label: translation['idLabel'],
+                hidden: true, field: 'id', sortable: false,
+                resizable: false},
+            editor({label: translation['titleLabel'],
+                    hidden: false, field: 'name', sortable: false,
+                    resizable: false, route: '/update/:id'})
         ],
 
         loadingMessage: translation['loadingMessage'],

@@ -26,7 +26,12 @@ return array(
 
     'hc-backend'=> array(
         'packages' => array(
-
+            'hcb-blog-tag' => array(
+                'js'=>array(
+                    'type'=>'content',
+                    'http_path'=>'/js/src/hcb-blog-tag'
+                )
+            )
         )
     )
 );
