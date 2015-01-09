@@ -4,7 +4,7 @@ define([
     "hc-backend/form/_HasPageFieldsMixin",
     "dijit/_WidgetsInTemplateMixin",
     "dojo/text!./templates/Form.html",
-    "dojo/i18n!../../nls/Manage",
+    "dojo/i18n!../../nls/Package",
     "dojo-common/form/BusyButton",
     "dijit/form/ValidationTextBox"
 ], function(declare, Form, _HasPageFieldsMixin,

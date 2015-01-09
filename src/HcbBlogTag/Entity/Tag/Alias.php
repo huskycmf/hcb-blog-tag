@@ -1,6 +1,7 @@
 <?php
 namespace HcbBlogTag\Entity\Tag;
 
+use HcBackend\Entity\AliasBindInterface;
 use HcBackend\Entity\AliasWiredInterface;
 use HcCore\Entity\EntityInterface;
 use Doctrine\ORM\Mapping as ORM;
@@ -11,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="post_tag_has_alias")
  * @ORM\Entity
  */
-class Alias implements EntityInterface, AliasWiredInterface
+class Alias implements EntityInterface, AliasWiredInterface, AliasBindInterface
 {
     /**
      * @var \HcBackend\Entity\Alias

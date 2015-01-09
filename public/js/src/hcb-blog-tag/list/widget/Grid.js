@@ -12,7 +12,7 @@ define([
     "hc-backend/dgrid/columns/editor",
     "dgrid/Keyboard",
     "dgrid/Selector",
-    "dojo/i18n!../../nls/List"
+    "dojo/i18n!../../nls/Package"
 ], function(declare, lang, TagStore,
             OnDemandGrid, ColumnHider, ColumnResizer, DijitRegistry,
             _Selection, _Refresher, timestamp, editor, Keyboard,

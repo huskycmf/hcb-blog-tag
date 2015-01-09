@@ -6,10 +6,17 @@
                data-dojo-props='name:"title", required: "true"' />
     </div>
 
+    <div class="row">
+        <label>${!_t.aliasLabel}</label>
+        <input class="${baseClass}Alias"
+               data-dojo-type="dijit/form/ValidationTextBox"
+               data-dojo-props='name:"alias", required: "true"' />
+    </div>
+
     <input class="${baseClass}AddButton"
            data-dojo-type="dojo-common/form/BusyButton"
            data-dojo-attach-point="saveButtonWidget"
            data-dojo-attach-event="onClick: save"
            data-dojo-props='name:"send",
-                            label:"${!_t.addButton}"' />
+                            label:"${!_t.saveButtonLabel}"' />
 </form>

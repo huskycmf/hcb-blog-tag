@@ -6,7 +6,7 @@ define([
     'hc-backend/layout/main/content/_ContentMixin',
     "dijit/_TemplatedMixin",
     "dojo/text!./templates/Container.html",
-    "dojo/i18n!../nls/List",
+    "dojo/i18n!../nls/Package",
     "dojo/request",
     "hc-backend/router",
     "hcb-blog-tag/list/widget/Grid",

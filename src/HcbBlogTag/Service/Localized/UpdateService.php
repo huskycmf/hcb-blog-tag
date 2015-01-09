@@ -2,8 +2,10 @@
 namespace HcbBlogTag\Service\Localized;
 
 use Doctrine\ORM\EntityManagerInterface;
+use HcBackend\Service\Alias\AliasBinderServiceInterface;
 use HcbBlogTag\Data\LocalizedInterface;
-use HcbBlogTag\Entity\Tag\Localized;
+use HcbBlogTag\Entity\Tag\Localized as LocalizedEntity;
+use HcbBlogTag\Entity\Tag\Alias as TagAliasEntity;
 use Zf2Libs\Stdlib\Service\Response\Messages\Response;
 
 class UpdateService
@@ -19,32 +21,49 @@ class UpdateService
     protected $saveResponse;
 
     /**
+     * @var AliasBinderServiceInterface
+     */
+    protected $aliasBinderService;
+
+    /**
      * @param EntityManagerInterface $entityManager
      * @param Response $saveResponse
      */
     public function __construct(EntityManagerInterface $entityManager,
+                                AliasBinderServiceInterface $aliasBinderService,
                                 Response $saveResponse)
     {
         $this->entityManager = $entityManager;
         $this->saveResponse = $saveResponse;
+        $this->aliasBinderService = $aliasBinderService;
     }
 
     /**
-     * @param \HcbBlogTag\Entity\Tag\Localized $localizedEntity
+     * @param LocalizedEntity $localizedEntity
      * @param LocalizedInterface $localizedData
      *
      * @return Response
      */
-    public function update(Localized $localizedEntity,
+    public function update(LocalizedEntity $localizedEntity,
                            LocalizedInterface $localizedData)
     {
         try {
             $this->entityManager->beginTransaction();
 
-            $localizedEntity->setQuestion($localizedData->getQuestion());
-            $localizedEntity->setAnswer($localizedData->getAnswer());
-            $localizedEntity->getFaq()->setEnabled(true);
+            $localizedEntity->setTitle($localizedData->getTitle());
+            $tagEntity = $localizedEntity->getTag();
 
+            $tagAliasEntity = new TagAliasEntity();
+            $this->aliasBinderService->bind($localizedData,
+                                            $tagEntity,
+                                            $tagAliasEntity);
+
+            $tagAliasEntity->setTag($tagEntity);
+            $tagAliasEntity->setIsPrimary(true);
+
+            $tagEntity->setEnabled(true);
+
+            $this->entityManager->persist($tagAliasEntity);
             $this->entityManager->persist($localizedEntity);
 
             $this->entityManager->flush();

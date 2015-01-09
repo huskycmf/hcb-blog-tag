@@ -2,6 +2,7 @@
 namespace HcbBlogTag\Stdlib\Extractor\Localized;
 
 use Doctrine\ORM\EntityManagerInterface;
+use HcBackend\Service\Alias\DetectAlias;
 use Zf2Libs\Stdlib\Extractor\ExtractorInterface;
 use Zf2Libs\Stdlib\Extractor\Exception\InvalidArgumentException;
 use HcbBlogTag\Entity\Tag\Localized as LocalizedEntity;
@@ -14,11 +15,19 @@ class Resource implements ExtractorInterface
     protected $entityManager;
 
     /**
-     * @param EntityManagerInterface $entityManager
+     * @var DetectAlias
      */
-    public function __construct(EntityManagerInterface $entityManager)
+    protected $detectAlias;
+
+    /**
+     * @param EntityManagerInterface $entityManager
+     * @param DetectAlias $detectAlias
+     */
+    public function __construct(EntityManagerInterface $entityManager,
+                                DetectAlias $detectAlias)
     {
         $this->entityManager = $entityManager;
+        $this->detectAlias = $detectAlias;
     }
 
     /**
@@ -38,9 +47,13 @@ class Resource implements ExtractorInterface
 
         $localeEntity = $localizedEntity->getLocale();
 
+        $aliasWireEntity = $this->detectAlias
+                                ->detect($localizedEntity->getTag());
+
         $localData = array('locale'=>($localeEntity ? $localeEntity->getLocale() : ''),
-                           'question'=> $localizedEntity->getQuestion(),
-                           'answer'=>$localizedEntity->getAnswer());
+                           'alias'=>(is_null($aliasWireEntity) ? '' :
+                                    $aliasWireEntity->getAlias()->getName()),
+                           'title'=>$localizedEntity->getTitle());
 
         if ( $localizedEntity->getId()) {
             $localData['id'] = $localizedEntity->getId();

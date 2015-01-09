@@ -52,9 +52,9 @@ class FetchArrayCollectionService implements ResourceDataServiceInterface
         $qb = $localizedRepository->createQueryBuilder('l');
 
         $qb->join('l.locale', 'locale')
-           ->where('l.faq = :faq');
+           ->where('l.tag = :tag');
 
-        $qb->setParameter('faq', $tagEntity);
+        $qb->setParameter('tag', $tagEntity);
 
         if (is_null($params)) {
             $result = $qb->getQuery()->getResult();
@@ -66,7 +66,7 @@ class FetchArrayCollectionService implements ResourceDataServiceInterface
 
         if (!count($result)) {
             $result[0] = new TagEntity\Localized();
-            $result[0]->setFaq($tagEntity);
+            $result[0]->setTag($tagEntity);
         }
 
         return new ArrayCollection($result);

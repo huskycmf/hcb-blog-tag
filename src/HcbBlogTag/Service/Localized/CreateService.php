@@ -58,7 +58,7 @@ class CreateService
             $this->entityManager->beginTransaction();
 
             $localizedEntity = new TagEntity\Localized();
-            $localizedEntity->setFaq($tagEntity);
+            $localizedEntity->setTag($tagEntity);
 
             $response = $this->localeBinderService
                              ->bind($localizedData, $localizedEntity);
